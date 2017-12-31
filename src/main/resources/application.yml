@@ -16,3 +16,11 @@ spring:
     host: 127.0.0.1
     password:
     database: 0
+#自定义属性值
+app:
+  name: CacheDemo
+
+#缓存常量定义
+User: #类名
+  library: users #库名
+  keyPrefix: user #键值前缀

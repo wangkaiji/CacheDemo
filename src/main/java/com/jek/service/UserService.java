@@ -14,18 +14,18 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Cacheable(value = "users",key="'user'+#id",unless = "#result==null")
+    @Cacheable(value = "${User.library}",key="'${User.keyPrefix}'+#id",unless = "#result==null")
     public User get(Integer id){
         return userRepository.findOne(id);
     }
 
-    @CacheEvict(value = "users",key = "'user'+#user.id")
+    @CacheEvict(value = "${User.library}",key="'${User.keyPrefix}'+#id")
     @Transactional(readOnly = false)
     public void update(User user){
         userRepository.save(user);
     }
 
-    @CacheEvict(value = "users",key = "'user'+#user.id")
+    @CacheEvict(value = "${User.library}",key="'${User.keyPrefix}'+#id")
     @Transactional(readOnly = false)
     public void delete(User user){
         userRepository.delete(user);
